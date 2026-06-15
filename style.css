@@ -1,0 +1,311 @@
+/* Colores base estilo "Gamer" */
+:root {
+  --fondo-oscuro: #0f1016;
+  --fondo-tarjeta: #1a1b26;
+  --cian-neon: #00d2ff;
+  --morado-neon: #a200ff;
+  --texto-blanco: #ffffff;
+  --texto-gris: #a0a0b0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--fondo-oscuro);
+  color: var(--texto-blanco);
+}
+
+/* --- CABECERA Y NAVEGACIÓN (FLEXBOX) --- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: rgba(26, 27, 38, 0.95);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.logo span {
+  color: var(--cian-neon);
+}
+
+nav a {
+  color: var(--texto-blanco);
+  text-decoration: none;
+  margin: 0 15px;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: var(--morado-neon);
+}
+
+.carrito {
+  background-color: var(--fondo-oscuro);
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: 1px solid var(--cian-neon);
+  font-weight: bold;
+}
+
+/* --- BANNER --- */
+.banner {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(45deg, #0f1016, #1a1b26);
+  border-bottom: 2px solid var(--morado-neon);
+}
+
+.banner h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: var(--cian-neon);
+}
+
+/* --- CATÁLOGO DE JUEGOS (CSS GRID) --- */
+main {
+  padding: 50px 40px;
+  max-width: 1200px;
+  margin: 0 auto; /* Centra el contenido en pantallas gigantes */
+}
+
+main h2 {
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+/* Aquí está la magia de la cuadrícula adaptativa */
+.cuadricula-juegos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px; /* Espacio entre tarjetas */
+}
+
+.tarjeta-juego {
+  background-color: var(--fondo-tarjeta);
+  border-radius: 12px;
+  overflow: hidden;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tarjeta-juego:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 210, 255, 0.2);
+  border-color: var(--cian-neon);
+}
+
+.tarjeta-juego img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.info-juego {
+  padding: 20px;
+}
+
+.categoria {
+  color: var(--texto-gris);
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.precio {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--cian-neon);
+  margin-bottom: 15px;
+}
+
+.btn-comprar {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(90deg, var(--cian-neon), var(--morado-neon));
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.btn-comprar:hover {
+  opacity: 0.8;
+}
+.logo-pagina {
+  height: 50px;
+}
+/* Estilos para el desplegable de información */
+.detalles-juego {
+  margin-bottom: 15px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 5px;
+}
+
+.detalles-juego summary {
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--cian-neon);
+  padding: 5px;
+  font-weight: bold;
+}
+
+.contenido-detalles {
+  padding: 10px;
+  font-size: 0.8rem;
+  color: var(--texto-gris);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 5px;
+}
+
+.contenido-detalles p {
+  margin-bottom: 5px;
+}
+/* --- ESTILO DEL BOTÓN CUANDO YA ESTÁ AÑADIDO --- */
+.btn-comprar.activo {
+  background: #00d2ff; /* Color cian fijo */
+  color: #0f1016; /* Texto oscuro para que resalte */
+  box-shadow: 0 0 10px var(--cian-neon);
+}
+
+/* --- OPTIMIZACIÓN DE LOGOS / IMÁGENES DE JUEGOS --- */
+.tarjeta-juego img {
+  width: 100%;
+  height: 180px; /* Altura fija para que todas las tarjetas midan igual */
+
+  /* ¡ESTA ES LA PROPIEDAD CLAVE! */
+  object-fit: cover;
+  /* 'cover' hace que la imagen se adapte al contenedor sin deformarse ni estirarse.
+       Si aun así el logo principal se corta, puedes probar cambiando 'cover' por 'contain' 
+       para que la imagen se reduzca completa dentro del cuadro. */
+
+  object-position: center; /* Centra la imagen para que no se corten las caras */
+  image-rendering: auto; /* Evita que las imágenes se pixelen al redimensionarse */
+}
+
+/* --- ESTILOS DE LA SECCIÓN 'SOBRE NEXUS' --- */
+.sobre-nexus {
+  padding: 60px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sobre-nexus h2 {
+  margin-bottom: 40px;
+  color: var(--texto-blanco);
+  font-size: 2rem;
+}
+
+.caracteristicas {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap; /* Hace que se acomode en celulares */
+}
+
+.item-info {
+  flex: 1;
+  min-width: 250px;
+  background-color: var(--fondo-tarjeta);
+  padding: 30px 20px;
+  border-radius: 10px;
+  border-bottom: 3px solid var(--cian-neon);
+}
+
+.item-info h3 {
+  color: var(--cian-neon);
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.item-info p {
+  color: var(--texto-gris);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* --- ESTILOS DE LA SECCIÓN 'OFERTAS' --- */
+.seccion-ofertas {
+  padding: 60px 40px;
+  background: linear-gradient(
+    180deg,
+    var(--fondo-oscuro),
+    #150b24
+  ); /* Toque morado sutil */
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.seccion-ofertas h2 {
+  color: #ff0055; /* Color rosa/rojo neón para ofertas alertas */
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.subtitulo-ofertas {
+  color: var(--texto-gris);
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+.cuadricula-ofertas {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.tarjeta-oferta {
+  background-color: rgba(26, 27, 38, 0.6);
+  border: 1px dashed #ff0055;
+  padding: 30px;
+  border-radius: 12px;
+  flex: 1;
+  min-width: 280px;
+  position: relative;
+  overflow: hidden;
+}
+
+.etiqueta-descuento {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #ff0055;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px #ff0055;
+}
+
+.tarjeta-oferta h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+.tarjeta-oferta p {
+  color: var(--texto-gris);
+  font-size: 0.9rem;
+}
